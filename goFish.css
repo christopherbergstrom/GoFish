@@ -1,4 +1,129 @@
 body
 {
-  background-color: black;
+  background: url(bubbles.jpg) no-repeat center center;
+}
+#top
+{
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  text-align: center;
+  font-size: 4em;
+  color: #97c6f1;
+}
+#twoButtons
+{
+  position: absolute;
+  margin-top: 10%;
+  left: 0px;
+  top: 0px;
+  text-align: center;
+  width: 100%;
+  font-size: 3em;
+}
+#numberOfPlayers
+{
+  position: absolute;
+  /*margin-bottom: 10%;*/
+  left: 0px;
+  top: 0px;
+  text-align: center;
+  width: 100%;
+  color: white;
+}
+#play
+{
+  padding-right: 2em;
+  text-decoration: underline;
+  color: #97c6f1;
+}
+#play:hover
+{
+  cursor: pointer;
+  color: white;
+}
+#instructions
+{
+  text-decoration: underline;
+  color: #97c6f1;
+}
+#instructions:hover
+{
+  cursor: pointer;
+  color: white;
+}
+#three
+{
+  position: absolute;
+  text-decoration: underline;
+  color: #97c6f1;
+  margin-top: 2em;
+  left: 35%;
+}
+#three:hover
+{
+  cursor: pointer;
+  color: white;
+}
+#four
+{
+  position: absolute;
+  text-decoration: underline;
+  color: #97c6f1;
+  margin-top: 2em;
+  left: 45%;
+}
+#four:hover
+{
+  cursor: pointer;
+  color: white;
+}
+#five
+{
+  position: absolute;
+  text-decoration: underline;
+  color: #97c6f1;
+  margin-top: 2em;
+  left: 55%;
+}
+#five:hover
+{
+  cursor: pointer;
+  color: white;
+}
+#six
+{
+  position: absolute;
+  text-decoration: underline;
+  color: #97c6f1;
+  margin-top: 2em;
+  left: 65%;
+}
+#six:hover
+{
+  cursor: pointer;
+  color: white;
+}
+#instructionsText
+{
+  position: absolute;
+  margin-top: 20%;
+  left: 10%;
+  top: 0px;
+  text-align: center;
+  width: 80%;
+  font-size: 2em;
+  color: white;
+}
+#board
+{
+  position: absolute;
+  margin-top: 5%;
+  left: 0px;
+  top: 0px;
+  bottom: 0px;
+  color: white;
+  text-align: center;
+  width: 100%;
 }
