@@ -10,6 +10,20 @@ var comp2;
 var comp3;
 var comp4;
 var comp5;
+var scoresSpan;
+var scoresText;
+var playerScores;
+var comp1Scores;
+var comp2Scores;
+var comp3Scores;
+var comp4Scores;
+var comp5Scores;
+var playerBooks = 0;
+var comp1Books = 0;
+var comp2Books = 0;
+var comp3Books = 0;
+var comp4Books = 0;
+var comp5Books = 0;
 var deckHand = []
 var playerHand = [];
 var comp1Hand = [];
@@ -35,6 +49,10 @@ window.onload = function()
     removeInstructions();
     createInstructions();
   });
+}
+function createScores()
+{
+
 }
 function removeInstructions()
 {
@@ -157,9 +175,9 @@ function assignCards(deckHand)
   board.setAttribute("id","board");
   deck = document.createElement("span")
   deck.setAttribute("id","deck");
-  player = document.createElement("span");
+  player = document.createElement("div");
   player.setAttribute("id","player");
-  player.innerHTML="player";
+  // player.innerHTML="player";
   comp1 = document.createElement("span");
   comp1.setAttribute("id","comp1");
   comp1.innerHTML="comp1";
@@ -175,6 +193,30 @@ function assignCards(deckHand)
   comp5 = document.createElement("span");
   comp5.setAttribute("id","comp5");
   comp5.innerHTML="comp5";
+  // scores table
+  scoresSpan = document.createElement("span");
+  scoresSpan.setAttribute("id","scoresSpan");
+  scoresText = document.createElement("div");
+  scoresText.setAttribute("id","scoresText");
+  scoresText.innerHTML="Scores";
+  playerScores = document.createElement("div");
+  playerScores.setAttribute("id","playerScores");
+  playerScores.innerHTML="Player: "+playerBooks;
+  comp1Scores = document.createElement("div");
+  comp1Scores.setAttribute("id","comp1Scores");
+  comp1Scores.innerHTML="Comp1: "+comp1Books;
+  comp2Scores = document.createElement("div");
+  comp2Scores.setAttribute("id","comp2Scores");
+  comp2Scores.innerHTML="Comp2: "+comp2Books;
+  comp3Scores = document.createElement("div");
+  comp3Scores.setAttribute("id","comp3Scores");
+  comp3Scores.innerHTML="Comp3: "+comp3Books;
+  comp4Scores = document.createElement("div");
+  comp4Scores.setAttribute("id","comp4Scores");
+  comp4Scores.innerHTML="Comp4: "+comp4Books;
+  comp5Scores = document.createElement("div");
+  comp5Scores.setAttribute("id","comp5Scores");
+  comp5Scores.innerHTML="Comp5: "+comp5Books;
   if (numPlayers === 3)
   {
     for (var i=0; i<3;i++)
@@ -188,6 +230,10 @@ function assignCards(deckHand)
     board.appendChild(player);
     board.appendChild(comp1);
     board.appendChild(comp2);
+    scoresSpan.appendChild(scoresText);
+    scoresSpan.appendChild(playerScores);
+    scoresSpan.appendChild(comp1Scores);
+    scoresSpan.appendChild(comp2Scores);
   }
   else if (numPlayers === 4)
   {
@@ -203,6 +249,11 @@ function assignCards(deckHand)
     board.appendChild(comp1);
     board.appendChild(comp2);
     board.appendChild(comp3);
+    scoresSpan.appendChild(scoresText);
+    scoresSpan.appendChild(playerScores);
+    scoresSpan.appendChild(comp1Scores);
+    scoresSpan.appendChild(comp2Scores);
+    scoresSpan.appendChild(comp3Scores);
   }
   else if (numPlayers === 5)
   {
@@ -219,6 +270,12 @@ function assignCards(deckHand)
     board.appendChild(comp2);
     board.appendChild(comp3);
     board.appendChild(comp4);
+    scoresSpan.appendChild(scoresText);
+    scoresSpan.appendChild(playerScores);
+    scoresSpan.appendChild(comp1Scores);
+    scoresSpan.appendChild(comp2Scores);
+    scoresSpan.appendChild(comp3Scores);
+    scoresSpan.appendChild(comp4Scores);
   }
   else if (numPlayers === 6)
   {
@@ -236,10 +293,25 @@ function assignCards(deckHand)
     board.appendChild(comp3);
     board.appendChild(comp4);
     board.appendChild(comp5);
+    scoresSpan.appendChild(scoresText);
+    scoresSpan.appendChild(playerScores);
+    scoresSpan.appendChild(comp1Scores);
+    scoresSpan.appendChild(comp2Scores);
+    scoresSpan.appendChild(comp3Scores);
+    scoresSpan.appendChild(comp4Scores);
+    scoresSpan.appendChild(comp5Scores);
   }
   deck.innerHTML=deckHand.length;
   board.appendChild(deck);
+  board.appendChild(scoresSpan);
   body.appendChild(board);
+  for (var i=0;i<playerHand.length;i++)
+  {
+    var card = document.createElement("span");
+    card.setAttribute("class","card");
+    card.innerHTML=playerHand[i];
+    player.appendChild(card);
+  }
   console.log("playerHand");
   console.log(playerHand);
   console.log("comp1Hand");

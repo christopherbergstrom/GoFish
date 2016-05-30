@@ -143,15 +143,25 @@ body
 #player
 {
   position: absolute;
+  width: 100vw;
+  height: 9vw;
+  bottom: 10%;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+.card
+{
+  /*position: absolute;*/
   width: 6vw;
   height: 9vw;
-  left: 47.5%;
-  bottom: 10%;
   border: 2px solid white;
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
+  /*padding-right: 5%;*/
 }
 #comp1
 {
@@ -217,4 +227,16 @@ body
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+#scoresSpan
+{
+  position: absolute;
+  left: 7.5%;
+  top: 35%;
+  font-size: 1.5em;
+  color: white;
+  /*display: flex;*/
+  text-align: left;
+  /*align-items: center;*/
+  /*justify-content: center;*/
 }
