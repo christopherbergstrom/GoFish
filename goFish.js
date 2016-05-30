@@ -31,6 +31,7 @@ var comp2Hand = [];
 var comp3Hand = [];
 var comp4Hand = [];
 var comp5Hand = [];
+var clickedCard;
 
 window.onload = function()
 {
@@ -181,18 +182,38 @@ function assignCards(deckHand)
   comp1 = document.createElement("span");
   comp1.setAttribute("id","comp1");
   comp1.innerHTML="comp1";
+  comp1.addEventListener("click", function()
+  {
+    ask(1);
+  });
   comp2 = document.createElement("span");
   comp2.setAttribute("id","comp2");
   comp2.innerHTML="comp2";
+  comp2.addEventListener("click", function()
+  {
+    ask(2);
+  });
   comp3 = document.createElement("span");
   comp3.setAttribute("id","comp3");
   comp3.innerHTML="comp3";
+  comp3.addEventListener("click", function()
+  {
+    ask(3);
+  });
   comp4 = document.createElement("span");
   comp4.setAttribute("id","comp4");
   comp4.innerHTML="comp4";
+  comp4.addEventListener("click", function()
+  {
+    ask(4);
+  });
   comp5 = document.createElement("span");
   comp5.setAttribute("id","comp5");
   comp5.innerHTML="comp5";
+  comp5.addEventListener("click", function()
+  {
+    ask(5);
+  });
   // scores table
   scoresSpan = document.createElement("span");
   scoresSpan.setAttribute("id","scoresSpan");
@@ -307,10 +328,8 @@ function assignCards(deckHand)
   body.appendChild(board);
   for (var i=0;i<playerHand.length;i++)
   {
-    var card = document.createElement("span");
-    card.setAttribute("class","card");
-    card.innerHTML=playerHand[i];
-    player.appendChild(card);
+    var array = playerHand;
+    addCard(i, array);
   }
   console.log("playerHand");
   console.log(playerHand);
@@ -324,6 +343,73 @@ function assignCards(deckHand)
   console.log(comp4Hand);
   console.log("comp5Hand");
   console.log(comp5Hand);
+}
+function addCard(num, array)
+{
+  var card = document.createElement("span");
+  card.setAttribute("class","card");
+  card.innerHTML=array[num];
+  card.addEventListener("click", function()
+  {
+    var clickedCardArray=array[num].split(" ");
+    clickedCard=clickedCardArray[0];
+    console.log(clickedCard);
+  })
+  player.appendChild(card);
+}
+function ask(num)
+{
+  if (num === 1 && clickedCard)
+  {
+    for (var i = 0; i < comp1Hand.length; i++)
+    {
+      if (comp1Hand[i].indexOf(clickedCard) !== -1)
+      {
+        
+        console.log("found it!");
+      }
+    }
+  }
+  else if (num === 2 && clickedCard)
+  {
+    for (var i = 0; i < comp2Hand.length; i++)
+    {
+      if (comp2Hand[i].indexOf(clickedCard) !== -1)
+      {
+        console.log("found it!");
+      }
+    }
+  }
+  else if (num === 3 && clickedCard)
+  {
+    for (var i = 0; i < comp3Hand.length; i++)
+    {
+      if (comp3Hand[i].indexOf(clickedCard) !== -1)
+      {
+        console.log("found it!");
+      }
+    }
+  }
+  else if (num === 4 && clickedCard)
+  {
+    for (var i = 0; i < comp4Hand.length; i++)
+    {
+      if (comp4Hand[i].indexOf(clickedCard) !== -1)
+      {
+        console.log("found it!");
+      }
+    }
+  }
+  else if (num === 5 && clickedCard)
+  {
+    for (var i = 0; i < comp5Hand.length; i++)
+    {
+      if (comp5Hand[i].indexOf(clickedCard) !== -1)
+      {
+        console.log("found it!");
+      }
+    }
+  }
 }
 function assignCardsToWho(deckHand, who, card)
 {

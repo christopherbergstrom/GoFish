@@ -163,6 +163,10 @@ body
   justify-content: center;
   /*padding-right: 5%;*/
 }
+.card:hover
+{
+  cursor: pointer;
+}
 #comp1
 {
   position: absolute;
@@ -175,6 +179,10 @@ body
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+#comp1:hover
+{
+  cursor: pointer;
 }
 #comp2
 {
@@ -189,6 +197,10 @@ body
   align-items: center;
   justify-content: center;
 }
+#comp2:hover
+{
+  cursor: pointer;
+}
 #comp3
 {
   position: absolute;
@@ -201,6 +213,10 @@ body
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+#comp3:hover
+{
+  cursor: pointer;
 }
 #comp4
 {
@@ -215,6 +231,10 @@ body
   align-items: center;
   justify-content: center;
 }
+#comp4:hover
+{
+  cursor: pointer;
+}
 #comp5
 {
   position: absolute;
@@ -227,6 +247,10 @@ body
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+#comp5:hover
+{
+  cursor: pointer;
 }
 #scoresSpan
 {
