@@ -32,6 +32,8 @@ var comp3Hand = [];
 var comp4Hand = [];
 var comp5Hand = [];
 var clickedCard;
+var clickedCardIndex;
+var playersArray = [];
 
 window.onload = function()
 {
@@ -255,6 +257,9 @@ function assignCards(deckHand)
     scoresSpan.appendChild(playerScores);
     scoresSpan.appendChild(comp1Scores);
     scoresSpan.appendChild(comp2Scores);
+    playersArray.push(playerHand);
+    playersArray.push(comp1Hand);
+    playersArray.push(comp2Hand);
   }
   else if (numPlayers === 4)
   {
@@ -275,6 +280,10 @@ function assignCards(deckHand)
     scoresSpan.appendChild(comp1Scores);
     scoresSpan.appendChild(comp2Scores);
     scoresSpan.appendChild(comp3Scores);
+    playersArray.push(playerHand);
+    playersArray.push(comp1Hand);
+    playersArray.push(comp2Hand);
+    playersArray.push(comp3Hand);
   }
   else if (numPlayers === 5)
   {
@@ -297,6 +306,11 @@ function assignCards(deckHand)
     scoresSpan.appendChild(comp2Scores);
     scoresSpan.appendChild(comp3Scores);
     scoresSpan.appendChild(comp4Scores);
+    playersArray.push(playerHand);
+    playersArray.push(comp1Hand);
+    playersArray.push(comp2Hand);
+    playersArray.push(comp3Hand);
+    playersArray.push(comp4Hand);
   }
   else if (numPlayers === 6)
   {
@@ -321,6 +335,12 @@ function assignCards(deckHand)
     scoresSpan.appendChild(comp3Scores);
     scoresSpan.appendChild(comp4Scores);
     scoresSpan.appendChild(comp5Scores);
+    playersArray.push(playerHand);
+    playersArray.push(comp1Hand);
+    playersArray.push(comp2Hand);
+    playersArray.push(comp3Hand);
+    playersArray.push(comp4Hand);
+    playersArray.push(comp5Hand);
   }
   deck.innerHTML=deckHand.length;
   board.appendChild(deck);
@@ -353,60 +373,29 @@ function addCard(num, array)
   {
     var clickedCardArray=array[num].split(" ");
     clickedCard=clickedCardArray[0];
+    clickedCardIndex = num;
     console.log(clickedCard);
   })
   player.appendChild(card);
+  // body.insertBefore(arrow, player);
+  // player.insertBefore(card,)
 }
 function ask(num)
 {
-  if (num === 1 && clickedCard)
+  if (clickedCard)
   {
-    for (var i = 0; i < comp1Hand.length; i++)
+    for (var i = 0; i < playersArray[num].length; i++)
     {
-      if (comp1Hand[i].indexOf(clickedCard) !== -1)
-      {
-        
-        console.log("found it!");
-      }
-    }
-  }
-  else if (num === 2 && clickedCard)
-  {
-    for (var i = 0; i < comp2Hand.length; i++)
-    {
-      if (comp2Hand[i].indexOf(clickedCard) !== -1)
+      if (playersArray[num][i].indexOf(clickedCard) !== -1)
       {
         console.log("found it!");
-      }
-    }
-  }
-  else if (num === 3 && clickedCard)
-  {
-    for (var i = 0; i < comp3Hand.length; i++)
-    {
-      if (comp3Hand[i].indexOf(clickedCard) !== -1)
-      {
-        console.log("found it!");
-      }
-    }
-  }
-  else if (num === 4 && clickedCard)
-  {
-    for (var i = 0; i < comp4Hand.length; i++)
-    {
-      if (comp4Hand[i].indexOf(clickedCard) !== -1)
-      {
-        console.log("found it!");
-      }
-    }
-  }
-  else if (num === 5 && clickedCard)
-  {
-    for (var i = 0; i < comp5Hand.length; i++)
-    {
-      if (comp5Hand[i].indexOf(clickedCard) !== -1)
-      {
-        console.log("found it!");
+        var index = clickedCardIndex;
+        playersArray[0].splice(index, 0, playersArray[num][i]);
+        playersArray[num].splice(i, 1);
+        addCard(index, playersArray[0]);
+        console.log("index: "+index);
+        console.log(playersArray[0]);
+        console.log(playersArray[num]);
       }
     }
   }
