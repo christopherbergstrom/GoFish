@@ -346,6 +346,7 @@ function assignCards(deckHand)
   board.appendChild(deck);
   board.appendChild(scoresSpan);
   body.appendChild(board);
+  playerHand.sort();
   for (var i=0;i<playerHand.length;i++)
   {
     var array = playerHand;
@@ -368,6 +369,7 @@ function addCard(num, array)
 {
   var card = document.createElement("span");
   card.setAttribute("class","card");
+  card.setAttribute("id", array[num]);
   card.innerHTML=array[num];
   card.addEventListener("click", function()
   {
@@ -375,10 +377,8 @@ function addCard(num, array)
     clickedCard=clickedCardArray[0];
     clickedCardIndex = num;
     console.log(clickedCard);
-  })
+  });
   player.appendChild(card);
-  // body.insertBefore(arrow, player);
-  // player.insertBefore(card,)
 }
 function ask(num)
 {
@@ -389,15 +389,29 @@ function ask(num)
       if (playersArray[num][i].indexOf(clickedCard) !== -1)
       {
         console.log("found it!");
-        var index = clickedCardIndex;
-        playersArray[0].splice(index, 0, playersArray[num][i]);
+        // var index = clickedCardIndex;
+        // playersArray[0].splice(index, 0, playersArray[num][i]);
+        playersArray[0].push(playersArray[num][i]);
+        playersArray[0].sort();
         playersArray[num].splice(i, 1);
-        addCard(index, playersArray[0]);
-        console.log("index: "+index);
-        console.log(playersArray[0]);
-        console.log(playersArray[num]);
+        clearCards(playersArray[0]);
+        // console.log("index: "+index);
+        // console.log(playersArray[0]);
+        // console.log(playersArray[num]);
       }
     }
+  }
+}
+function clearCards(array)
+{
+  var playerCards = document.getElementById("player");
+  while (playerCards.firstChild)
+  {
+    playerCards.removeChild(playerCards.firstChild);
+  }
+  for (var i=0; i<array.length; i++)
+  {
+    addCard(i, array);
   }
 }
 function assignCardsToWho(deckHand, who, card)
