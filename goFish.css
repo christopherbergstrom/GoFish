@@ -127,3 +127,94 @@ body
   text-align: center;
   width: 100%;
 }
+#deck
+{
+  position: absolute;
+  width: 6vw;
+  height: 9vw;
+  left: 47.5%;
+  top: 40%;
+  border: 2px solid white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+#player
+{
+  position: absolute;
+  width: 6vw;
+  height: 9vw;
+  left: 47.5%;
+  bottom: 10%;
+  border: 2px solid white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+#comp1
+{
+  position: absolute;
+  width: 6vw;
+  height: 9vw;
+  left: 47.5%;
+  top: 10%;
+  border: 2px solid white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+#comp2
+{
+  position: absolute;
+  width: 6vw;
+  height: 9vw;
+  left: 67.5%;
+  top: 10%;
+  border: 2px solid white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+#comp3
+{
+  position: absolute;
+  width: 6vw;
+  height: 9vw;
+  left: 27.5%;
+  top: 10%;
+  border: 2px solid white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+#comp4
+{
+  position: absolute;
+  width: 6vw;
+  height: 9vw;
+  left: 87.5%;
+  top: 10%;
+  border: 2px solid white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+#comp5
+{
+  position: absolute;
+  width: 6vw;
+  height: 9vw;
+  left: 7.5%;
+  top: 10%;
+  border: 2px solid white;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
