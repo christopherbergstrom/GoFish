@@ -242,12 +242,15 @@ function assignCards(deckHand)
   comp5Scores.innerHTML="Comp5: "+comp5Books;
   if (numPlayers === 3)
   {
+    playersArray.push(playerHand);
+    playersArray.push(comp1Hand);
+    playersArray.push(comp2Hand);
     for (var i=0; i<3;i++)
     {
       for (var j=0;j<5;j++)
       {
         var whichCard = Math.floor(Math.random() * deckHand.length);
-        assignCardsToWho(deckHand, i, whichCard);
+        drawCard(deckHand, i, whichCard);
       }
     }
     board.appendChild(player);
@@ -257,18 +260,19 @@ function assignCards(deckHand)
     scoresSpan.appendChild(playerScores);
     scoresSpan.appendChild(comp1Scores);
     scoresSpan.appendChild(comp2Scores);
-    playersArray.push(playerHand);
-    playersArray.push(comp1Hand);
-    playersArray.push(comp2Hand);
   }
   else if (numPlayers === 4)
   {
+    playersArray.push(playerHand);
+    playersArray.push(comp1Hand);
+    playersArray.push(comp2Hand);
+    playersArray.push(comp3Hand);
     for (var i=0; i<4;i++)
     {
       for (var j=0;j<5;j++)
       {
         var whichCard = Math.floor(Math.random() * deckHand.length);
-        assignCardsToWho(deckHand, i, whichCard);
+        drawCard(deckHand, i, whichCard);
       }
     }
     board.appendChild(player);
@@ -280,19 +284,20 @@ function assignCards(deckHand)
     scoresSpan.appendChild(comp1Scores);
     scoresSpan.appendChild(comp2Scores);
     scoresSpan.appendChild(comp3Scores);
+  }
+  else if (numPlayers === 5)
+  {
     playersArray.push(playerHand);
     playersArray.push(comp1Hand);
     playersArray.push(comp2Hand);
     playersArray.push(comp3Hand);
-  }
-  else if (numPlayers === 5)
-  {
+    playersArray.push(comp4Hand);
     for (var i=0; i<5;i++)
     {
       for (var j=0;j<5;j++)
       {
         var whichCard = Math.floor(Math.random() * deckHand.length);
-        assignCardsToWho(deckHand, i, whichCard);
+        drawCard(deckHand, i, whichCard);
       }
     }
     board.appendChild(player);
@@ -306,20 +311,21 @@ function assignCards(deckHand)
     scoresSpan.appendChild(comp2Scores);
     scoresSpan.appendChild(comp3Scores);
     scoresSpan.appendChild(comp4Scores);
+  }
+  else if (numPlayers === 6)
+  {
     playersArray.push(playerHand);
     playersArray.push(comp1Hand);
     playersArray.push(comp2Hand);
     playersArray.push(comp3Hand);
     playersArray.push(comp4Hand);
-  }
-  else if (numPlayers === 6)
-  {
+    playersArray.push(comp5Hand);
     for (var i=0; i<6;i++)
     {
       for (var j=0;j<5;j++)
       {
         var whichCard = Math.floor(Math.random() * deckHand.length);
-        assignCardsToWho(deckHand, i, whichCard);
+        drawCard(deckHand, i, whichCard);
       }
     }
     board.appendChild(player);
@@ -335,23 +341,12 @@ function assignCards(deckHand)
     scoresSpan.appendChild(comp3Scores);
     scoresSpan.appendChild(comp4Scores);
     scoresSpan.appendChild(comp5Scores);
-    playersArray.push(playerHand);
-    playersArray.push(comp1Hand);
-    playersArray.push(comp2Hand);
-    playersArray.push(comp3Hand);
-    playersArray.push(comp4Hand);
-    playersArray.push(comp5Hand);
   }
   deck.innerHTML=deckHand.length;
   board.appendChild(deck);
   board.appendChild(scoresSpan);
   body.appendChild(board);
-  playerHand.sort();
-  for (var i=0;i<playerHand.length;i++)
-  {
-    var array = playerHand;
-    addCard(i, array);
-  }
+  sortAndAdd();
   console.log("playerHand");
   console.log(playerHand);
   console.log("comp1Hand");
@@ -382,6 +377,7 @@ function addCard(num, array)
 }
 function ask(num)
 {
+  var count = 0;
   if (clickedCard)
   {
     for (var i = 0; i < playersArray[num].length; i++)
@@ -392,13 +388,35 @@ function ask(num)
         // var index = clickedCardIndex;
         // playersArray[0].splice(index, 0, playersArray[num][i]);
         playersArray[0].push(playersArray[num][i]);
-        playersArray[0].sort();
         playersArray[num].splice(i, 1);
         clearCards(playersArray[0]);
         // console.log("index: "+index);
         // console.log(playersArray[0]);
         // console.log(playersArray[num]);
       }
+      else
+      {
+          count++;
+      }
+      console.log(deckHand);
+    }
+    if (count === playersArray[num].length)
+    {
+      console.log("Go Fish");
+      var whichCard = Math.floor(Math.random() * deckHand.length);
+      drawCard(deckHand, 0, whichCard);
+      var cardName = playersArray[0][playersArray[0].length-1].split(" ");
+      var card = cardName[0];
+      if (card === clickedCard);
+      {
+        console.log("got what I wanted. Go again.");
+      }
+      else
+      {
+        console.log("Computer's turn.");
+      }
+      clearCards();
+
     }
   }
 }
@@ -409,42 +427,20 @@ function clearCards(array)
   {
     playerCards.removeChild(playerCards.firstChild);
   }
-  for (var i=0; i<array.length; i++)
+  sortAndAdd();
+}
+function sortAndAdd()
+{
+  playerHand.sort();
+  for (var i=0;i<playerHand.length;i++)
   {
-    addCard(i, array);
+    addCard(i, playerHand);
   }
 }
-function assignCardsToWho(deckHand, who, card)
+function drawCard(deckHand, num, card)
 {
-  if (who === 0)
-  {
-    playerHand.push(deckHand[card]);
-    deckHand.splice(card, 1);
-  }
-  if (who === 1)
-  {
-    comp1Hand.push(deckHand[card]);
-    deckHand.splice(card, 1);
-  }
-  if (who === 2)
-  {
-    comp2Hand.push(deckHand[card]);
-    deckHand.splice(card, 1);
-  }
-  if (who === 3)
-  {
-    comp3Hand.push(deckHand[card]);
-    deckHand.splice(card, 1);
-  }
-  if (who === 4)
-  {
-    comp4Hand.push(deckHand[card]);
-    deckHand.splice(card, 1);
-  }
-  if (who === 5)
-  {
-    comp5Hand.push(deckHand[card]);
-    deckHand.splice(card, 1);
-  }
+  playersArray[num].push(deckHand[card]);
+  deckHand.splice(card, 1);
+  deck.innerHTML = deckHand.length;
   // console.log(deckHand.length);
 }
