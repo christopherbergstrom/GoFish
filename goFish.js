@@ -18,6 +18,7 @@ var comp2Scores;
 var comp3Scores;
 var comp4Scores;
 var comp5Scores;
+var scoresArray = [];
 var playerBooks = 0;
 var comp1Books = 0;
 var comp2Books = 0;
@@ -260,6 +261,9 @@ function assignCards(deckHand)
     scoresSpan.appendChild(playerScores);
     scoresSpan.appendChild(comp1Scores);
     scoresSpan.appendChild(comp2Scores);
+    scoresArray.push(playerScores)
+    scoresArray.push(comp1Scores)
+    scoresArray.push(comp2Scores)
   }
   else if (numPlayers === 4)
   {
@@ -284,6 +288,10 @@ function assignCards(deckHand)
     scoresSpan.appendChild(comp1Scores);
     scoresSpan.appendChild(comp2Scores);
     scoresSpan.appendChild(comp3Scores);
+    scoresArray.push(playerScores)
+    scoresArray.push(comp1Scores)
+    scoresArray.push(comp2Scores)
+    scoresArray.push(comp3Scores)
   }
   else if (numPlayers === 5)
   {
@@ -311,6 +319,11 @@ function assignCards(deckHand)
     scoresSpan.appendChild(comp2Scores);
     scoresSpan.appendChild(comp3Scores);
     scoresSpan.appendChild(comp4Scores);
+    scoresArray.push(playerScores)
+    scoresArray.push(comp1Scores)
+    scoresArray.push(comp2Scores)
+    scoresArray.push(comp3Scores)
+    scoresArray.push(comp4Scores)
   }
   else if (numPlayers === 6)
   {
@@ -341,6 +354,12 @@ function assignCards(deckHand)
     scoresSpan.appendChild(comp3Scores);
     scoresSpan.appendChild(comp4Scores);
     scoresSpan.appendChild(comp5Scores);
+    scoresArray.push(playerScores)
+    scoresArray.push(comp1Scores)
+    scoresArray.push(comp2Scores)
+    scoresArray.push(comp3Scores)
+    scoresArray.push(comp4Scores)
+    scoresArray.push(comp5Scores)
   }
   deck.innerHTML=deckHand.length;
   board.appendChild(deck);
@@ -476,6 +495,8 @@ function compTurn(comp, num)
   }
   console.log("comp"+num+": "+comp.length);
   console.log("comp"+who+": "+playersArray[who].length);
+  checkBook();
+  checkWin();
 }
 function clearCards(array)
 {
@@ -500,4 +521,29 @@ function drawCard(deckHand, num, card)
   deckHand.splice(card, 1);
   deck.innerHTML = deckHand.length;
   // console.log(deckHand.length);
+}
+function checkBook()
+{
+  var checkArray = [];
+  for (var i = 0; i < scoresArray.length; i++)
+  {
+    scoresArray[i].sort();
+    for (var j = 0; j < scoresArray[i].length; j++)
+    {
+      var typeArray = scoresArray[i][j].split(" ");
+      checkArray.push(typeArray[0]);
+    }
+    if (checkArray.length < 4)
+    {
+      continue;
+    }
+    for (var k = 0; k < checkArray[i].length; k++)
+    {
+
+    }
+  }
+}
+function checkWin()
+{
+
 }
