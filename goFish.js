@@ -25,6 +25,12 @@ var comp2Books = 0;
 var comp3Books = 0;
 var comp4Books = 0;
 var comp5Books = 0;
+var playerBooksAmount;
+var comp1BooksAmount;
+var comp2BooksAmount;
+var comp3BooksAmount;
+var comp4BooksAmount;
+var comp5BooksAmount;
 var deckHand = []
 var playerHand = [];
 var comp1Hand = [];
@@ -223,24 +229,60 @@ function assignCards(deckHand)
   scoresText = document.createElement("div");
   scoresText.setAttribute("id","scoresText");
   scoresText.innerHTML="Scores";
-  playerScores = document.createElement("div");
+
+  var playerDiv = document.createElement("div");
+  playerScores = document.createElement("span");
   playerScores.setAttribute("id","playerScores");
-  playerScores.innerHTML="Player: "+playerBooks;
-  comp1Scores = document.createElement("div");
+  playerScores.innerHTML="Player: ";
+  playerBooksAmount = document.createElement("span");
+  playerBooksAmount.innerHTML=playerBooks;
+  playerDiv.appendChild(playerScores);
+  playerDiv.appendChild(playerBooksAmount);
+
+  var comp1Div = document.createElement("div");
+  comp1Scores = document.createElement("span");
   comp1Scores.setAttribute("id","comp1Scores");
-  comp1Scores.innerHTML="Comp1: "+comp1Books;
-  comp2Scores = document.createElement("div");
+  comp1Scores.innerHTML="Comp1: ";
+  comp1BooksAmount = document.createElement("span");
+  comp1BooksAmount.innerHTML=comp1Books;
+  comp1Div.appendChild(comp1Scores);
+  comp1Div.appendChild(comp1BooksAmount);
+
+  comp2Scores = document.createElement("span");
   comp2Scores.setAttribute("id","comp2Scores");
-  comp2Scores.innerHTML="Comp2: "+comp2Books;
-  comp3Scores = document.createElement("div");
+  comp2Scores.innerHTML="Comp2: ";
+  comp2BooksAmount = document.createElement("span");
+  comp2BooksAmount.innerHTML=comp2Books;
+  var comp2Div = document.createElement("div");
+  comp2Div.appendChild(comp2Scores);
+  comp2Div.appendChild(comp2BooksAmount);
+
+  var comp3Div = document.createElement("div");
+  comp3Scores = document.createElement("span");
   comp3Scores.setAttribute("id","comp3Scores");
-  comp3Scores.innerHTML="Comp3: "+comp3Books;
-  comp4Scores = document.createElement("div");
+  comp3Scores.innerHTML="Comp3: ";
+  comp3BooksAmount = document.createElement("span");
+  comp3BooksAmount.innerHTML=comp3Books;
+  comp3Div.appendChild(comp3Scores);
+  comp3Div.appendChild(comp3BooksAmount);
+
+  var comp4Div = document.createElement("div");
+  comp4Scores = document.createElement("span");
   comp4Scores.setAttribute("id","comp4Scores");
-  comp4Scores.innerHTML="Comp4: "+comp4Books;
-  comp5Scores = document.createElement("div");
+  comp4Scores.innerHTML="Comp4: ";
+  comp4BooksAmount = document.createElement("span");
+  comp4BooksAmount.innerHTML=comp4Books;
+  comp4Div.appendChild(comp4Scores);
+  comp4Div.appendChild(comp4BooksAmount);
+
+  var comp5Div = document.createElement("div");
+  comp5Scores = document.createElement("span");
   comp5Scores.setAttribute("id","comp5Scores");
-  comp5Scores.innerHTML="Comp5: "+comp5Books;
+  comp5Scores.innerHTML="Comp5: ";
+  comp5BooksAmount = document.createElement("span");
+  comp5BooksAmount.innerHTML=comp5Books;
+  comp5Div.appendChild(comp5Scores);
+  comp5Div.appendChild(comp5BooksAmount);
   if (numPlayers === 3)
   {
     playersArray.push(playerHand);
@@ -258,12 +300,12 @@ function assignCards(deckHand)
     board.appendChild(comp1);
     board.appendChild(comp2);
     scoresSpan.appendChild(scoresText);
-    scoresSpan.appendChild(playerScores);
-    scoresSpan.appendChild(comp1Scores);
-    scoresSpan.appendChild(comp2Scores);
-    scoresArray.push(playerScores)
-    scoresArray.push(comp1Scores)
-    scoresArray.push(comp2Scores)
+    scoresSpan.appendChild(playerDiv);
+    scoresSpan.appendChild(comp1Div);
+    scoresSpan.appendChild(comp2Div);
+    scoresArray.push(playerBooksAmount)
+    scoresArray.push(comp1BooksAmount)
+    scoresArray.push(comp2BooksAmount)
   }
   else if (numPlayers === 4)
   {
@@ -284,14 +326,14 @@ function assignCards(deckHand)
     board.appendChild(comp2);
     board.appendChild(comp3);
     scoresSpan.appendChild(scoresText);
-    scoresSpan.appendChild(playerScores);
-    scoresSpan.appendChild(comp1Scores);
-    scoresSpan.appendChild(comp2Scores);
-    scoresSpan.appendChild(comp3Scores);
-    scoresArray.push(playerScores)
-    scoresArray.push(comp1Scores)
-    scoresArray.push(comp2Scores)
-    scoresArray.push(comp3Scores)
+    scoresSpan.appendChild(playerDiv);
+    scoresSpan.appendChild(comp1Div);
+    scoresSpan.appendChild(comp2Div);
+    scoresSpan.appendChild(comp3Div);
+    scoresArray.push(playerBooksAmount)
+    scoresArray.push(comp1BooksAmount)
+    scoresArray.push(comp2BooksAmount)
+    scoresArray.push(comp3BooksAmount)
   }
   else if (numPlayers === 5)
   {
@@ -314,16 +356,16 @@ function assignCards(deckHand)
     board.appendChild(comp3);
     board.appendChild(comp4);
     scoresSpan.appendChild(scoresText);
-    scoresSpan.appendChild(playerScores);
-    scoresSpan.appendChild(comp1Scores);
-    scoresSpan.appendChild(comp2Scores);
-    scoresSpan.appendChild(comp3Scores);
-    scoresSpan.appendChild(comp4Scores);
-    scoresArray.push(playerScores)
-    scoresArray.push(comp1Scores)
-    scoresArray.push(comp2Scores)
-    scoresArray.push(comp3Scores)
-    scoresArray.push(comp4Scores)
+    scoresSpan.appendChild(playerDiv);
+    scoresSpan.appendChild(comp1Div);
+    scoresSpan.appendChild(comp2Div);
+    scoresSpan.appendChild(comp3Div);
+    scoresSpan.appendChild(comp4Div);
+    scoresArray.push(playerBooksAmount)
+    scoresArray.push(comp1BooksAmount)
+    scoresArray.push(comp2BooksAmount)
+    scoresArray.push(comp3BooksAmount)
+    scoresArray.push(comp4BooksAmount)
   }
   else if (numPlayers === 6)
   {
@@ -348,18 +390,18 @@ function assignCards(deckHand)
     board.appendChild(comp4);
     board.appendChild(comp5);
     scoresSpan.appendChild(scoresText);
-    scoresSpan.appendChild(playerScores);
-    scoresSpan.appendChild(comp1Scores);
-    scoresSpan.appendChild(comp2Scores);
-    scoresSpan.appendChild(comp3Scores);
-    scoresSpan.appendChild(comp4Scores);
-    scoresSpan.appendChild(comp5Scores);
-    scoresArray.push(playerScores)
-    scoresArray.push(comp1Scores)
-    scoresArray.push(comp2Scores)
-    scoresArray.push(comp3Scores)
-    scoresArray.push(comp4Scores)
-    scoresArray.push(comp5Scores)
+    scoresSpan.appendChild(playerDiv);
+    scoresSpan.appendChild(comp1Div);
+    scoresSpan.appendChild(comp2Div);
+    scoresSpan.appendChild(comp3Div);
+    scoresSpan.appendChild(comp4Div);
+    scoresSpan.appendChild(comp5Div);
+    scoresArray.push(playerBooksAmount)
+    scoresArray.push(comp1BooksAmount)
+    scoresArray.push(comp2BooksAmount)
+    scoresArray.push(comp3BooksAmount)
+    scoresArray.push(comp4BooksAmount)
+    scoresArray.push(comp5BooksAmount)
   }
   deck.innerHTML=deckHand.length;
   board.appendChild(deck);
@@ -408,7 +450,8 @@ function ask(num)
         // playersArray[0].splice(index, 0, playersArray[num][i]);
         playersArray[0].push(playersArray[num][i]);
         playersArray[num].splice(i, 1);
-        clearCards(playersArray[0]);
+        checkBook();
+        clearCards();
       }
       else
       {
@@ -431,6 +474,9 @@ function ask(num)
         console.log("Computer's turn.");
         compTurn(playersArray[num], num);
       }
+      // clearCards();
+      checkBook();
+      // checkWin();
       clearCards();
     }
   }
@@ -460,12 +506,12 @@ function compTurn(comp, num)
       console.log("found it!");
       // var index = clickedCardIndex;
       // playersArray[0].splice(index, 0, playersArray[num][i]);
-      console.log(comp);
-      console.log(playersArray[who]);
+      // console.log(comp);
+      // console.log(playersArray[who]);
       comp.push(playersArray[who][i]);
       playersArray[who].splice(i, 1);
-      console.log(comp);
-      console.log(playersArray[who]);
+      // console.log(comp);
+      // console.log(playersArray[who]);
       // clearCards(playersArray[0]);
     }
     else
@@ -495,10 +541,11 @@ function compTurn(comp, num)
   }
   console.log("comp"+num+": "+comp.length);
   console.log("comp"+who+": "+playersArray[who].length);
-  checkBook();
-  checkWin();
+  // checkBook();
+  // clearCards();
+  // checkWin();
 }
-function clearCards(array)
+function clearCards()
 {
   var playerCards = document.getElementById("player");
   while (playerCards.firstChild)
@@ -524,22 +571,46 @@ function drawCard(deckHand, num, card)
 }
 function checkBook()
 {
+  var count = 0;
+  var cardMatches = [];
   var checkArray = [];
-  for (var i = 0; i < scoresArray.length; i++)
+  console.log(playersArray.length);
+  for (var i = 0; i < playersArray.length; i++)
   {
-    scoresArray[i].sort();
-    for (var j = 0; j < scoresArray[i].length; j++)
+    console.log(playersArray[i]);
+    console.log(playersArray[i].length);
+    // if (playersArray[i].length < 4)
+    // {
+    //   continue;
+    // }
+    playersArray[i].sort();
+    for (var j = 0; j < playersArray[i].length; j++)
     {
-      var typeArray = scoresArray[i][j].split(" ");
+      var typeArray = playersArray[i][j].split(" ");
       checkArray.push(typeArray[0]);
     }
-    if (checkArray.length < 4)
+    for (var k = 0; k < checkArray.length; k++)
     {
-      continue;
-    }
-    for (var k = 0; k < checkArray[i].length; k++)
-    {
-
+      for (var l = 0; l < checkArray.length; l++)
+      {
+        if (checkArray[k] === checkArray[l])
+        {
+          count ++;
+          cardMatches.push(l);
+        }
+      }
+      if (cardMatches.length === 4)
+      {
+        console.log("found 4");
+        scoresArray[i].innerHTML++;
+        console.log(playersArray[i]);
+        for (var m = 0; m < 4; m++)
+        {
+          playersArray[i].splice(cardMatches[m], 1);
+        }
+        console.log(playersArray[i]);
+      }
+      cardMatches = [];
     }
   }
 }
