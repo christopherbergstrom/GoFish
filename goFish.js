@@ -390,15 +390,11 @@ function ask(num)
         playersArray[0].push(playersArray[num][i]);
         playersArray[num].splice(i, 1);
         clearCards(playersArray[0]);
-        // console.log("index: "+index);
-        // console.log(playersArray[0]);
-        // console.log(playersArray[num]);
       }
       else
       {
           count++;
       }
-      console.log(deckHand);
     }
     if (count === playersArray[num].length)
     {
@@ -407,18 +403,79 @@ function ask(num)
       drawCard(deckHand, 0, whichCard);
       var cardName = playersArray[0][playersArray[0].length-1].split(" ");
       var card = cardName[0];
-      if (card === clickedCard);
+      if (card === clickedCard)
       {
         console.log("got what I wanted. Go again.");
       }
       else
       {
         console.log("Computer's turn.");
+        compTurn(playersArray[num], num);
       }
       clearCards();
-
     }
   }
+}
+function compTurn(comp, num)
+{
+  var countNo = 0;
+  var countYes = 0;
+  do
+  {
+    var who = Math.floor(Math.random() * playersArray.length);
+  } while (playersArray[who] === comp);
+  var whichCard = Math.floor(Math.random() * comp.length);
+  console.log(playersArray[who] === comp);
+  console.log(who);
+  console.log("comp: "+comp);
+  console.log(playersArray[who]);
+  console.log(comp[whichCard]);
+  var cardName = comp[whichCard].split(" ");
+  whichCard = cardName[0];
+  console.log("comp"+num+" asked comp"+who+" if he had a "+whichCard);
+  for (var i = 0; i < playersArray[who].length; i++)
+  {
+    if (playersArray[who][i].indexOf(whichCard) !== -1)
+    {
+      countYes++;
+      console.log("found it!");
+      // var index = clickedCardIndex;
+      // playersArray[0].splice(index, 0, playersArray[num][i]);
+      console.log(comp);
+      console.log(playersArray[who]);
+      comp.push(playersArray[who][i]);
+      playersArray[who].splice(i, 1);
+      console.log(comp);
+      console.log(playersArray[who]);
+      // clearCards(playersArray[0]);
+    }
+    else
+    {
+      countNo++;
+    }
+  }
+  if (countYes)
+  {
+    console.log("comp"+who+" gave comp"+num+" "+countYes+" "+whichCard+"s");
+  }
+  if (countNo === playersArray[who].length)
+  {
+    console.log("Go Fish");
+    var whichCard = Math.floor(Math.random() * deckHand.length);
+    drawCard(deckHand, num, whichCard);
+    var cardName = playersArray[num][playersArray[num].length-1].split(" ");
+    var card = cardName[0];
+    if (card === clickedCard)
+    {
+      console.log("got what I wanted. Go again.");
+    }
+    else
+    {
+      console.log("Player's turn.");
+    }
+  }
+  console.log("comp"+num+": "+comp.length);
+  console.log("comp"+who+": "+playersArray[who].length);
 }
 function clearCards(array)
 {
