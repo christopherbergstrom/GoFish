@@ -439,6 +439,7 @@ function addCard(num, array)
 function ask(num)
 {
   var count = 0;
+  var cardMatches = [];
   if (clickedCard)
   {
     for (var i = 0; i < playersArray[num].length; i++)
@@ -448,17 +449,29 @@ function ask(num)
         console.log("found it!");
         // var index = clickedCardIndex;
         // playersArray[0].splice(index, 0, playersArray[num][i]);
-        playersArray[0].push(playersArray[num][i]);
-        playersArray[num].splice(i, 1);
-        checkBook();
-        clearCards();
+        cardMatches.push(i);
       }
       else
       {
           count++;
       }
     }
-    if (count === playersArray[num].length)
+    if (cardMatches.length)
+    {
+      // console.log(cardMatches.length);
+      console.log(cardMatches);
+      for (var i = 0; i < cardMatches.length; i++)
+      {
+        playersArray[0].push(playersArray[num][cardMatches[i]]);
+      }
+      for (var i = cardMatches.length-1; i >= 0; i--)
+      {
+        playersArray[num].splice(cardMatches[i], 1);
+      }
+      checkBook();
+      clearCards();
+    }
+    else if (count === playersArray[num].length)
     {
       console.log("Go Fish");
       var whichCard = Math.floor(Math.random() * deckHand.length);
@@ -468,21 +481,22 @@ function ask(num)
       if (card === clickedCard)
       {
         console.log("got what I wanted. Go again.");
+        checkBook();
+        clearCards();
       }
       else
       {
         console.log("Computer's turn.");
         compTurn(playersArray[num], num);
+        checkBook();
+        clearCards();
       }
-      // clearCards();
-      checkBook();
-      // checkWin();
-      clearCards();
     }
   }
 }
 function compTurn(comp, num)
 {
+  var cardMatches = [];
   var countNo = 0;
   var countYes = 0;
   do
@@ -504,33 +518,40 @@ function compTurn(comp, num)
     {
       countYes++;
       console.log("found it!");
-      // var index = clickedCardIndex;
-      // playersArray[0].splice(index, 0, playersArray[num][i]);
       // console.log(comp);
       // console.log(playersArray[who]);
-      comp.push(playersArray[who][i]);
-      playersArray[who].splice(i, 1);
       // console.log(comp);
       // console.log(playersArray[who]);
-      // clearCards(playersArray[0]);
+      cardMatches.push(i);
     }
     else
     {
       countNo++;
     }
   }
+  if (cardMatches.length)
+  {
+    for (var i = 0; i < cardMatches.length; i++)
+    {
+      comp.push(playersArray[who][i]);
+    }
+    for (var i = cardMatches.length-1; i >= 0; i--)
+    {
+      playersArray[who].splice(i, 1);
+    }
+  }
   if (countYes)
   {
     console.log("comp"+who+" gave comp"+num+" "+countYes+" "+whichCard+"s");
   }
-  if (countNo === playersArray[who].length)
+  else if (countNo === playersArray[who].length)
   {
     console.log("Go Fish");
-    var whichCard = Math.floor(Math.random() * deckHand.length);
-    drawCard(deckHand, num, whichCard);
+    var whichCardDraw = Math.floor(Math.random() * deckHand.length);
+    drawCard(deckHand, num, whichCardDraw);
     var cardName = playersArray[num][playersArray[num].length-1].split(" ");
     var card = cardName[0];
-    if (card === clickedCard)
+    if (card === whichCard)
     {
       console.log("got what I wanted. Go again.");
     }
@@ -574,7 +595,6 @@ function checkBook()
   var count = 0;
   var cardMatches = [];
   var checkArray = [];
-  console.log(playersArray.length);
   for (var i = 0; i < playersArray.length; i++)
   {
     console.log(playersArray[i]);
@@ -595,6 +615,10 @@ function checkBook()
       {
         if (checkArray[k] === checkArray[l])
         {
+          // console.log(checkArray[k]);
+          // console.log(k);
+          // console.log(checkArray[l]);
+          // console.log(l);
           count ++;
           cardMatches.push(l);
         }
@@ -612,6 +636,7 @@ function checkBook()
       }
       cardMatches = [];
     }
+    checkArray = [];
   }
 }
 function checkWin()
