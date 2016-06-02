@@ -459,7 +459,7 @@ function ask(num)
     if (cardMatches.length)
     {
       // console.log(cardMatches.length);
-      console.log(cardMatches);
+      // console.log(cardMatches);
       for (var i = 0; i < cardMatches.length; i++)
       {
         playersArray[0].push(playersArray[num][cardMatches[i]]);
@@ -486,6 +486,8 @@ function ask(num)
       }
       else
       {
+        checkBook();
+        clearCards();
         console.log("Computer's turn.");
         compTurn(playersArray[num], num);
         checkBook();
@@ -533,11 +535,11 @@ function compTurn(comp, num)
   {
     for (var i = 0; i < cardMatches.length; i++)
     {
-      comp.push(playersArray[who][i]);
+      comp.push(playersArray[who][cardMatches[i]]);
     }
     for (var i = cardMatches.length-1; i >= 0; i--)
     {
-      playersArray[who].splice(i, 1);
+      playersArray[who].splice(cardMatches[i], 1);
     }
   }
   if (countYes)
@@ -597,13 +599,13 @@ function checkBook()
   var checkArray = [];
   for (var i = 0; i < playersArray.length; i++)
   {
+    playersArray[i].sort();
     console.log(playersArray[i]);
     console.log(playersArray[i].length);
     // if (playersArray[i].length < 4)
     // {
     //   continue;
     // }
-    playersArray[i].sort();
     for (var j = 0; j < playersArray[i].length; j++)
     {
       var typeArray = playersArray[i][j].split(" ");
@@ -627,12 +629,20 @@ function checkBook()
       {
         console.log("found 4");
         scoresArray[i].innerHTML++;
-        console.log(playersArray[i]);
-        for (var m = 0; m < 4; m++)
+        console.log("player: "+playersArray[i]);
+        console.log("cardMatches: "+cardMatches);
+        console.log("checkArray: "+checkArray);
+        for (var m = cardMatches.length-1; m >= 0; m--)
         {
           playersArray[i].splice(cardMatches[m], 1);
+          checkArray.splice(cardMatches[m], 1);
         }
-        console.log(playersArray[i]);
+        // for (var m = 0; m < 4; m++)
+        // {
+        //   playersArray[i].splice(cardMatches[m], 1);
+        // }
+        console.log("player: "+playersArray[i]);
+        console.log("checkArray: "+checkArray);
       }
       cardMatches = [];
     }
