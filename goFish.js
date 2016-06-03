@@ -91,10 +91,30 @@ function removeButtons()
 }
 function createInstructions()
 {
+  var instructionsTextDiv = document.createElement("div");
+  instructionsTextDiv.setAttribute("id", "instructionsTextDiv");
   var instructionsText = document.createElement("div");
-  instructionsText.setAttribute("id", "instructionsText");
-  instructionsText.innerHTML="Click a card in your hand to select it. Then click the player that you want to ask the card for, if the player has the card you asked for, it will be moved to your hand and you get to go again. If the player does not have the card you are asking for, you will automatically draw a card from the deck. If the card you draw is the same rank of the card that you asked for you get to go again, if not, it's the player's turn that you asked the card for. Players get points by getting 4 cards of the same rank. The game is over when either there are no more cards in any of the players' hands or when you don't have any cards left in your hand. Win by having the most points at the end of the game.";
-  body.appendChild(instructionsText);
+  instructionsText.innerHTML="- Click a card in your hand to select it.";
+  instructionsTextDiv.appendChild(instructionsText);
+  var instructionsText = document.createElement("div");
+  instructionsText.innerHTML="- Then click the player that you want to ask the card for.";
+  instructionsTextDiv.appendChild(instructionsText);
+  var instructionsText = document.createElement("div");
+  instructionsText.innerHTML= "- If the player has the card you asked for, it will be moved to your hand and you get to go again.";
+  instructionsTextDiv.appendChild(instructionsText);
+  var instructionsText = document.createElement("div");
+  instructionsText.innerHTML= "- If the player does not have the card you are asking for, you will automatically draw a card from the deck.";
+  instructionsTextDiv.appendChild(instructionsText);
+  var instructionsText = document.createElement("div");
+  instructionsText.innerHTML= "- If the card you draw is the same rank of the card that you asked for, you get to go again. If not, it's that player's turn.";
+  instructionsTextDiv.appendChild(instructionsText);
+  var instructionsText = document.createElement("div");
+  instructionsText.innerHTML= "- Players get points by getting 4 cards of the same rank.";
+  instructionsTextDiv.appendChild(instructionsText);
+  var instructionsText = document.createElement("div");
+  instructionsText.innerHTML= "- The game is over when either there are no more cards in any of the players' hands, or when you don't have any cards left in your hand. Win by having the most points at the end of the game.";
+  instructionsTextDiv.appendChild(instructionsText);
+  body.appendChild(instructionsTextDiv);
 }
 function amountOfPlayers()
 {

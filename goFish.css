@@ -16,6 +16,7 @@ body
 {
   position: absolute;
   margin-top: 10%;
+  margin-bottom: 10%;
   left: 0px;
   top: 0px;
   text-align: center;
@@ -105,13 +106,13 @@ body
   cursor: pointer;
   color: white;
 }
-#instructionsText
+#instructionsTextDiv
 {
   position: absolute;
-  margin-top: 20%;
+  margin-top: 15%;
   left: 10%;
   top: 0px;
-  text-align: center;
+  text-align: left;
   width: 80%;
   font-size: 2em;
   color: white;
