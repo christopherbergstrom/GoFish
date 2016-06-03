@@ -737,7 +737,14 @@ function checkWin()
     if (playersArray[i].length === 0)
     {
       count++;
-      var remove = document.getElementById("comp"+i);
+      if (i === 0)
+      {
+        var remove = document.getElementById("player");
+      }
+      else
+      {
+        var remove = document.getElementById("comp"+i);
+      }
       if (remove)
       {
         remove.parentNode.removeChild(remove);
@@ -746,24 +753,31 @@ function checkWin()
     }
   }
   // if (true)
-  var player = document.getElementById("player")
-
+  var player = document.getElementById("player");
+  console.log(count);
+  console.log(playersArray.length);
+  console.log(count === playersArray.length);
+  console.log(!player);
   if (count === playersArray.length || !player)
   {
     for (var i = 0; i < scoresArray.length; i++)
     {
+      console.log(scoresArray[i].innerHTML);
       if (i === 0)
       {
-        winners = scoresArray[i]
+        winners = scoresArray[i].innerHTML;
       }
       else
       {
-        winners = Math.max(winners, scoresArray[i]);
+        winners = Math.max(winners, scoresArray[i].innerHTML);
       }
     }
     for (var i = 0; i < scoresArray.length; i++)
     {
-      if (scoresArray[i] === winners && winners > 0)
+      console.log(scoresArray[i].innerHTML);
+      console.log(winners);
+      console.log(scoresArray[i].innerHTML == winners);
+      if (scoresArray[i].innerHTML == winners)
       {
         if (i === 0)
         {

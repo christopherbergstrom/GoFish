@@ -303,16 +303,21 @@ body
 .winningMessage
 {
   position: relative;
-  margin-top: 10%;
+  margin-top: 15%;
   left: 0px;
   top: 0px;
   text-align: center;
   width: 100%;
   font-size: 3em;
+  color: white;
 }
 #playAgain
 {
+  position: relative;
+  margin-top: 10%;
+  font-size: 3em;
   text-decoration: underline;
+  text-align: center;
   color: #97c6f1;
 }
 #playAgain:hover
