@@ -97,7 +97,7 @@ function createInstructions()
   instructionsText.innerHTML="- Click a card in your hand to select it.";
   instructionsTextDiv.appendChild(instructionsText);
   var instructionsText = document.createElement("div");
-  instructionsText.innerHTML="- Then click the player that you want to ask the card for.";
+  instructionsText.innerHTML="- Then click the player that you want to ask for that card.";
   instructionsTextDiv.appendChild(instructionsText);
   var instructionsText = document.createElement("div");
   instructionsText.innerHTML= "- If the player has the card you asked for, it will be moved to your hand and you get to go again.";
