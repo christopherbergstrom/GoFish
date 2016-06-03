@@ -300,13 +300,23 @@ body
   color: white;
   text-align: left;
 }
-#winningMessage
+.winningMessage
 {
-  position: absolute;
+  position: relative;
   margin-top: 10%;
   left: 0px;
   top: 0px;
   text-align: center;
   width: 100%;
   font-size: 3em;
+}
+#playAgain
+{
+  text-decoration: underline;
+  color: #97c6f1;
+}
+#playAgain:hover
+{
+  cursor: pointer;
+  color: white;
 }

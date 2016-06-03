@@ -462,7 +462,14 @@ function addCard(num, array)
 }
 function ask(num)
 {
-  message1.innerHTML="You asked Player "+num+" for a "+clickedCard;
+  if (clickedCard)
+  {
+    message1.innerHTML="You asked Player "+num+" for a "+clickedCard;
+  }
+  else
+  {
+    message1.innerHTML="Select a card";
+  }
   var count = 0;
   var cardMatches = [];
   if (clickedCard)
@@ -557,7 +564,7 @@ function compTurn(comp, num)
   do
   {
     var who = Math.floor(Math.random() * playersArray.length);
-  } while (playersArray[who] === comp);
+  } while (playersArray[who] === comp && playersArray[who]);
   var whichCard = Math.floor(Math.random() * comp.length);
   console.log(playersArray[who] === comp);
   console.log(who);
@@ -679,12 +686,8 @@ function checkBook()
   for (var i = 0; i < playersArray.length; i++)
   {
     playersArray[i].sort();
-    console.log(playersArray[i]);
+    // console.log(playersArray[i]);
     console.log(playersArray[i].length);
-    // if (playersArray[i].length < 4)
-    // {
-    //   continue;
-    // }
     for (var j = 0; j < playersArray[i].length; j++)
     {
       var typeArray = playersArray[i][j].split(" ");
@@ -708,20 +711,16 @@ function checkBook()
       {
         console.log("found 4");
         scoresArray[i].innerHTML++;
-        console.log("player: "+playersArray[i]);
-        console.log("cardMatches: "+cardMatches);
-        console.log("checkArray: "+checkArray);
+        // console.log("player: "+playersArray[i]);
+        // console.log("cardMatches: "+cardMatches);
+        // console.log("checkArray: "+checkArray);
         for (var m = cardMatches.length-1; m >= 0; m--)
         {
           playersArray[i].splice(cardMatches[m], 1);
           checkArray.splice(cardMatches[m], 1);
         }
-        // for (var m = 0; m < 4; m++)
-        // {
-        //   playersArray[i].splice(cardMatches[m], 1);
-        // }
-        console.log("player: "+playersArray[i]);
-        console.log("checkArray: "+checkArray);
+        // console.log("player: "+playersArray[i]);
+        // console.log("checkArray: "+checkArray);
       }
       cardMatches = [];
     }
@@ -730,18 +729,26 @@ function checkBook()
 }
 function checkWin()
 {
-  var empty = false;
   var winners;
   var winnersArray = [];
+  var count = 0;
   for (var i = 0; i < playersArray.length; i++)
   {
     if (playersArray[i].length === 0)
     {
-      empty = true;
+      count++;
+      var remove = document.getElementById("comp"+i);
+      if (remove)
+      {
+        remove.parentNode.removeChild(remove);
+      }
+      // playersArray.splice(i, 1);
     }
   }
   // if (true)
-  if (empty)
+  var player = document.getElementById("player")
+
+  if (count === playersArray.length || !player)
   {
     for (var i = 0; i < scoresArray.length; i++)
     {
@@ -775,18 +782,28 @@ function checkWin()
       for (var i = 0; i < winnersArray.length; i++)
       {
         var winningMessage = document.createElement("div");
+        winningMessage.setAttribute("class", "winningMessage");
         if (winnersArray[i] === "You")
         {
+          winningMessage.innerHTML=winnersArray[i]+" win!";
           console.log(winnersArray[i]+" win!");
         }
         else
         {
+          winningMessage.innerHTML=winnersArray[i]+" wins!";
           console.log(winnersArray[i]+" wins!");
         }
-        winningMessage.setAttribute("id", "winningMessage");
-        winningMessage.innerHTML="";
+        body.appendChild(winningMessage);
         console.log(winners);
       }
+      var playAgain = document.createElement("div");
+      playAgain.setAttribute("id", "playAgain");
+      playAgain.innerHTML="Play Again?";
+      playAgain.addEventListener("click", function()
+      {
+        location.reload();
+      });
+      body.appendChild(playAgain);
     }
   }
 }
