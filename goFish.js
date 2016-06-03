@@ -93,7 +93,7 @@ function createInstructions()
 {
   var instructionsText = document.createElement("div");
   instructionsText.setAttribute("id", "instructionsText");
-  instructionsText.innerHTML="Put instructions here.";
+  instructionsText.innerHTML="Click a card in your hand to select it. Then click the player that you want to ask the card for, if the player has the card you asked for, it will be moved to your hand and you get to go again. If the player does not have the card you are asking for, you will automatically draw a card from the deck. If the card you draw is the same rank of the card that you asked for you get to go again, if not, it's the player's turn that you asked the card for. Players get points by getting 4 cards of the same rank. The game is over when either there are no more cards in any of the players' hands or when you don't have any cards left in your hand. Win by having the most points at the end of the game.";
   body.appendChild(instructionsText);
 }
 function amountOfPlayers()
