@@ -1,7 +1,8 @@
 Authors: Christopher Bergstrom<br>
 Date created: June 2, 2016<br>
 Technologies: HTML, CSS, JavaScript<br>
-How to use: - Click a card in your hand to select it.
+How to use: 
+- Click a card in your hand to select it.
 - Then click the player that you want to ask the card for.
 - If the player has the card you asked for, it will be moved to your hand and you get to go again.
 - If the player does not have the card you are asking for, you will automatically draw a card from the deck.
