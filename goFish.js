@@ -190,39 +190,39 @@ function assignCards(deckHand)
   deck = document.createElement("span")
   deck.setAttribute("id","deck");
   player = document.createElement("div");
-  player.setAttribute("id","player");
-  // player.innerHTML="player";
+  player.setAttribute("id", "player");
+  // player.innerHTML=;
   comp1 = document.createElement("span");
   comp1.setAttribute("id","comp1");
-  comp1.innerHTML="Player1";
+  comp1.innerHTML="Player 1";
   comp1.addEventListener("click", function()
   {
     ask(1);
   });
   comp2 = document.createElement("span");
   comp2.setAttribute("id","comp2");
-  comp2.innerHTML="Player2";
+  comp2.innerHTML="Player 2";
   comp2.addEventListener("click", function()
   {
     ask(2);
   });
   comp3 = document.createElement("span");
   comp3.setAttribute("id","comp3");
-  comp3.innerHTML="Player3";
+  comp3.innerHTML="Player 3";
   comp3.addEventListener("click", function()
   {
     ask(3);
   });
   comp4 = document.createElement("span");
   comp4.setAttribute("id","comp4");
-  comp4.innerHTML="Player4";
+  comp4.innerHTML="Player 4";
   comp4.addEventListener("click", function()
   {
     ask(4);
   });
   comp5 = document.createElement("span");
   comp5.setAttribute("id","comp5");
-  comp5.innerHTML="Player5";
+  comp5.innerHTML="Player 5";
   comp5.addEventListener("click", function()
   {
     ask(5);
@@ -462,7 +462,7 @@ function addCard(num, array)
 }
 function ask(num)
 {
-  message1.innerHTML="You asked Player"+num+" for a "+clickedCard;
+  message1.innerHTML="You asked Player "+num+" for a "+clickedCard;
   var count = 0;
   var cardMatches = [];
   if (clickedCard)
@@ -483,7 +483,7 @@ function ask(num)
     }
     if (cardMatches.length)
     {
-      message2.innerHTML="Player"+num+" gave you "+cardMatches.length+" card(s)";
+      message2.innerHTML="Player "+num+" gave you "+cardMatches.length+" card(s)";
       message3.innerHTML="";
       message4.innerHTML="";
       // console.log(cardMatches.length);
@@ -498,33 +498,53 @@ function ask(num)
       }
       checkBook();
       clearCards();
+      checkWin();
     }
     else if (count === playersArray[num].length)
     {
-      console.log("Go Fish");
-      var whichCard = Math.floor(Math.random() * deckHand.length);
-      drawCard(deckHand, 0, whichCard);
-      var cardName = playersArray[0][playersArray[0].length-1].split(" ");
-      var card = cardName[0];
-      message2.innerHTML="Go fish - you drew a "+cardName[0]+" of "+cardName[2];
-      if (card === clickedCard)
+      if (deckHand.length > 0)
       {
-        message2.innerHTML="Go fish - I drew the card that I asked for. I get to go again";
-        console.log("got what I wanted. Go again.");
-        message3.innerHTML="";
-        message4.innerHTML="";
-        checkBook();
-        clearCards();
+        console.log("Go Fish");
+        var whichCard = Math.floor(Math.random() * deckHand.length);
+        drawCard(deckHand, 0, whichCard);
+        var cardName = playersArray[0][playersArray[0].length-1].split(" ");
+        var card = cardName[0];
+        message2.innerHTML="Go fish - you drew a "+cardName[0]+" of "+cardName[2];
+        if (card === clickedCard)
+        {
+          message2.innerHTML="Go fish - I drew the card that I asked for. I get to go again";
+          console.log("got what I wanted. Go again.");
+          message3.innerHTML="";
+          message4.innerHTML="";
+          checkBook();
+          clearCards();
+          checkWin();
+        }
+        else
+        {
+          checkBook();
+          clearCards();
+          checkWin();
+          // message.innerHTML=+num+"'s turn";
+          console.log("Computer's turn.");
+          compTurn(playersArray[num], num);
+          checkBook();
+          clearCards();
+          checkWin();
+        }
       }
       else
       {
-        checkBook();
-        clearCards();
-        // message.innerHTML="Player"+num+"'s turn";
-        console.log("Computer's turn.");
-        compTurn(playersArray[num], num);
-        checkBook();
-        clearCards();
+          message2.innerHTML="Go fish - the deck is out, there are no more cards to draw";
+          checkBook();
+          clearCards();
+          checkWin();
+          // message.innerHTML=+num+"'s turn";
+          console.log("Computer's turn.");
+          compTurn(playersArray[num], num);
+          checkBook();
+          clearCards();
+          checkWin();
       }
     }
   }
@@ -546,7 +566,14 @@ function compTurn(comp, num)
   console.log(comp[whichCard]);
   var cardName = comp[whichCard].split(" ");
   whichCard = cardName[0];
-  message3.innerHTML="Player"+num+" asked Player"+who+" if he had a "+whichCard;
+  if (who === 0)
+  {
+    message3.innerHTML="Player "+num+" asked you if have a "+whichCard;
+  }
+  else
+  {
+    message3.innerHTML="Player "+num+" asked Player "+who+" if he had a "+whichCard;
+  }
   console.log("Comp"+num+" asked Comp"+who+" if he had a "+whichCard);
   for (var i = 0; i < playersArray[who].length; i++)
   {
@@ -578,24 +605,41 @@ function compTurn(comp, num)
   }
   if (countYes)
   {
-    message4.innerHTML="Player"+who+" gave Player"+num+" "+countYes+" cards";
+    if (who === 0)
+    {
+      message4.innerHTML="You gave Player "+num+" "+countYes+" card(s)";
+    }
+    else
+    {
+      message4.innerHTML="Player "+who+" gave Player "+num+" "+countYes+" card(s)";
+    }
     console.log("comp"+who+" gave comp"+num+" "+countYes+" "+whichCard+"s");
   }
   else if (countNo === playersArray[who].length)
   {
-    message4.innerHTML="Player"+who+" didn't have a "+whichCard;
-    console.log("Go Fish");
-    var whichCardDraw = Math.floor(Math.random() * deckHand.length);
-    drawCard(deckHand, num, whichCardDraw);
-    var cardName = playersArray[num][playersArray[num].length-1].split(" ");
-    var card = cardName[0];
-    if (card === whichCard)
+    if (who === 0)
     {
-      console.log("got what I wanted. Go again.");
+      message4.innerHTML="You didn't have a "+whichCard;
     }
     else
     {
-      console.log("Player's turn.");
+      message4.innerHTML="Player "+who+" didn't have a "+whichCard;
+    }
+    if (deckHand.length > 0)
+    {
+      console.log("Go Fish");
+      var whichCardDraw = Math.floor(Math.random() * deckHand.length);
+      drawCard(deckHand, num, whichCardDraw);
+      var cardName = playersArray[num][playersArray[num].length-1].split(" ");
+      var card = cardName[0];
+      if (card === whichCard)
+      {
+        console.log("got what I wanted. Go again.");
+      }
+      else
+      {
+        console.log("Player's turn.");
+      }
     }
   }
   console.log("comp"+num+": "+comp.length);
@@ -626,7 +670,6 @@ function drawCard(deckHand, num, card)
   playersArray[num].push(deckHand[card]);
   deckHand.splice(card, 1);
   deck.innerHTML = deckHand.length;
-  // console.log(deckHand.length);
 }
 function checkBook()
 {
@@ -687,5 +730,63 @@ function checkBook()
 }
 function checkWin()
 {
-
+  var empty = false;
+  var winners;
+  var winnersArray = [];
+  for (var i = 0; i < playersArray.length; i++)
+  {
+    if (playersArray[i].length === 0)
+    {
+      empty = true;
+    }
+  }
+  // if (true)
+  if (empty)
+  {
+    for (var i = 0; i < scoresArray.length; i++)
+    {
+      if (i === 0)
+      {
+        winners = scoresArray[i]
+      }
+      else
+      {
+        winners = Math.max(winners, scoresArray[i]);
+      }
+    }
+    for (var i = 0; i < scoresArray.length; i++)
+    {
+      if (scoresArray[i] === winners && winners > 0)
+      {
+        if (i === 0)
+        {
+          winnersArray.push("You");
+        }
+        else
+        {
+          winnersArray.push("Player "+i);
+        }
+      }
+    }
+    console.log(winnersArray);
+    if (winnersArray.length)
+    {
+      board.parentNode.removeChild(board);
+      for (var i = 0; i < winnersArray.length; i++)
+      {
+        var winningMessage = document.createElement("div");
+        if (winnersArray[i] === "You")
+        {
+          console.log(winnersArray[i]+" win!");
+        }
+        else
+        {
+          console.log(winnersArray[i]+" wins!");
+        }
+        winningMessage.setAttribute("id", "winningMessage");
+        winningMessage.innerHTML="";
+        console.log(winners);
+      }
+    }
+  }
 }
