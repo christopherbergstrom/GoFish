@@ -285,7 +285,7 @@ function assignCards(deckHand)
   var comp1Div = document.createElement("div");
   comp1Scores = document.createElement("span");
   comp1Scores.setAttribute("id","comp1Scores");
-  comp1Scores.innerHTML="Player1: ";
+  comp1Scores.innerHTML="Player 1: ";
   comp1BooksAmount = document.createElement("span");
   comp1BooksAmount.innerHTML=comp1Books;
   comp1Div.appendChild(comp1Scores);
@@ -293,7 +293,7 @@ function assignCards(deckHand)
 
   comp2Scores = document.createElement("span");
   comp2Scores.setAttribute("id","comp2Scores");
-  comp2Scores.innerHTML="Player2: ";
+  comp2Scores.innerHTML="Player 2: ";
   comp2BooksAmount = document.createElement("span");
   comp2BooksAmount.innerHTML=comp2Books;
   var comp2Div = document.createElement("div");
@@ -303,7 +303,7 @@ function assignCards(deckHand)
   var comp3Div = document.createElement("div");
   comp3Scores = document.createElement("span");
   comp3Scores.setAttribute("id","comp3Scores");
-  comp3Scores.innerHTML="Player3: ";
+  comp3Scores.innerHTML="Player 3: ";
   comp3BooksAmount = document.createElement("span");
   comp3BooksAmount.innerHTML=comp3Books;
   comp3Div.appendChild(comp3Scores);
@@ -312,7 +312,7 @@ function assignCards(deckHand)
   var comp4Div = document.createElement("div");
   comp4Scores = document.createElement("span");
   comp4Scores.setAttribute("id","comp4Scores");
-  comp4Scores.innerHTML="Player4: ";
+  comp4Scores.innerHTML="Player 4: ";
   comp4BooksAmount = document.createElement("span");
   comp4BooksAmount.innerHTML=comp4Books;
   comp4Div.appendChild(comp4Scores);
@@ -321,7 +321,7 @@ function assignCards(deckHand)
   var comp5Div = document.createElement("div");
   comp5Scores = document.createElement("span");
   comp5Scores.setAttribute("id","comp5Scores");
-  comp5Scores.innerHTML="Player5: ";
+  comp5Scores.innerHTML="Player 5: ";
   comp5BooksAmount = document.createElement("span");
   comp5BooksAmount.innerHTML=comp5Books;
   comp5Div.appendChild(comp5Scores);
@@ -484,7 +484,7 @@ function ask(num)
 {
   if (clickedCard)
   {
-    message1.innerHTML="You asked Player "+num+" for a "+clickedCard;
+    message1.innerHTML="You asked Player "+num+" for a(n) "+clickedCard;
   }
   else
   {
@@ -536,7 +536,7 @@ function ask(num)
         drawCard(deckHand, 0, whichCard);
         var cardName = playersArray[0][playersArray[0].length-1].split(" ");
         var card = cardName[0];
-        message2.innerHTML="Go fish - you drew a "+cardName[0]+" of "+cardName[2];
+        message2.innerHTML="Go fish - you drew a(n) "+cardName[0]+" of "+cardName[2];
         if (card === clickedCard)
         {
           message2.innerHTML="Go fish - I drew the card that I asked for. I get to go again";
@@ -595,11 +595,11 @@ function compTurn(comp, num)
   whichCard = cardName[0];
   if (who === 0)
   {
-    message3.innerHTML="Player "+num+" asked you if have a "+whichCard;
+    message3.innerHTML="Player "+num+" asked you if you have a(n) "+whichCard;
   }
   else
   {
-    message3.innerHTML="Player "+num+" asked Player "+who+" if he had a "+whichCard;
+    message3.innerHTML="Player "+num+" asked Player "+who+" if he had a(n) "+whichCard;
   }
   console.log("Comp"+num+" asked Comp"+who+" if he had a "+whichCard);
   for (var i = 0; i < playersArray[who].length; i++)
@@ -646,11 +646,11 @@ function compTurn(comp, num)
   {
     if (who === 0)
     {
-      message4.innerHTML="You didn't have a "+whichCard;
+      message4.innerHTML="You didn't have a(n) "+whichCard;
     }
     else
     {
-      message4.innerHTML="Player "+who+" didn't have a "+whichCard;
+      message4.innerHTML="Player "+who+" didn't have a(n) "+whichCard;
     }
     if (deckHand.length > 0)
     {
