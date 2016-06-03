@@ -70,10 +70,10 @@ function createScores()
 }
 function removeInstructions()
 {
-  var instructionsText = document.getElementById("instructionsText");
-  if (instructionsText)
+  var instructionsTextDiv = document.getElementById("instructionsTextDiv");
+  if (instructionsTextDiv)
   {
-    instructionsText.parentNode.removeChild(instructionsText);
+    instructionsTextDiv.parentNode.removeChild(instructionsTextDiv);
   }
 }
 function removeButtons()
