@@ -48,7 +48,7 @@ var playersArray = [];
 
 window.onload = function()
 {
-  console.log("loaded");
+  // console.log("loaded");
   body = document.querySelector("body");
   play = document.getElementById("play");
   play.addEventListener("click", function()
@@ -127,7 +127,7 @@ function amountOfPlayers()
   three.addEventListener("click", function()
   {
     numPlayers=3;
-    console.log(numPlayers);
+    // console.log(numPlayers);
     setUp();
   });
   var four = document.createElement("span");
@@ -136,7 +136,7 @@ function amountOfPlayers()
   four.addEventListener("click", function()
   {
     numPlayers=4;
-    console.log(numPlayers);
+    // console.log(numPlayers);
     setUp();
   });
   var five = document.createElement("span");
@@ -145,7 +145,7 @@ function amountOfPlayers()
   five.addEventListener("click", function()
   {
     numPlayers=5;
-    console.log(numPlayers);
+    // console.log(numPlayers);
     setUp();
   });
   var six = document.createElement("span");
@@ -154,7 +154,7 @@ function amountOfPlayers()
   six.addEventListener("click", function()
   {
     numPlayers=6;
-    console.log(numPlayers);
+    // console.log(numPlayers);
     setUp();
   });
   twoButtons.appendChild(numberOfPlayers);
@@ -165,7 +165,7 @@ function amountOfPlayers()
 }
 function setUp()
 {
-  console.log("play game");
+  // console.log("play game");
   var twoButtons = document.getElementById("twoButtons");
   if (twoButtons)
   {
@@ -188,7 +188,7 @@ function createDeck()
 }
 function shuffle(deckHand)
 {
-  console.log("in shuffle");
+  // console.log("in shuffle");
   var temporaryValue, randomIndex;
   for (var i=0; i<deckHand.length; i++)
   {
@@ -200,7 +200,7 @@ function shuffle(deckHand)
     deckHand[i] = deckHand[randomIndex];
     deckHand[randomIndex] = temporaryValue;
   }
-  console.log(deckHand);
+  // console.log(deckHand);
   assignCards(deckHand)
 }
 function assignCards(deckHand)
@@ -451,18 +451,18 @@ function assignCards(deckHand)
   board.appendChild(scoresSpan);
   body.appendChild(board);
   sortAndAdd();
-  console.log("playerHand");
-  console.log(playerHand);
-  console.log("comp1Hand");
-  console.log(comp1Hand);
-  console.log("comp2Hand");
-  console.log(comp2Hand);
-  console.log("comp3Hand");
-  console.log(comp3Hand);
-  console.log("comp4Hand");
-  console.log(comp4Hand);
-  console.log("comp5Hand");
-  console.log(comp5Hand);
+  // console.log("playerHand");
+  // console.log(playerHand);
+  // console.log("comp1Hand");
+  // console.log(comp1Hand);
+  // console.log("comp2Hand");
+  // console.log(comp2Hand);
+  // console.log("comp3Hand");
+  // console.log(comp3Hand);
+  // console.log("comp4Hand");
+  // console.log(comp4Hand);
+  // console.log("comp5Hand");
+  // console.log(comp5Hand);
 }
 function addCard(num, array)
 {
@@ -475,7 +475,7 @@ function addCard(num, array)
     var clickedCardArray=array[num].split(" ");
     clickedCard=clickedCardArray[0];
     clickedCardIndex = num;
-    console.log(clickedCard);
+    // console.log(clickedCard);
     message1.innerHTML="Ask for a "+ clickedCard;
   });
   player.appendChild(card);
@@ -498,7 +498,7 @@ function ask(num)
     {
       if (playersArray[num][i].indexOf(clickedCard) !== -1)
       {
-        console.log("found it!");
+        // console.log("found it!");
         // var index = clickedCardIndex;
         // playersArray[0].splice(index, 0, playersArray[num][i]);
         cardMatches.push(i);
@@ -513,8 +513,8 @@ function ask(num)
       message2.innerHTML="Player "+num+" gave you "+cardMatches.length+" card(s)";
       message3.innerHTML="";
       message4.innerHTML="";
-      // console.log(cardMatches.length);
-      // console.log(cardMatches);
+      // // console.log(cardMatches.length);
+      // // console.log(cardMatches);
       for (var i = 0; i < cardMatches.length; i++)
       {
         playersArray[0].push(playersArray[num][cardMatches[i]]);
@@ -531,7 +531,7 @@ function ask(num)
     {
       if (deckHand.length > 0)
       {
-        console.log("Go Fish");
+        // console.log("Go Fish");
         var whichCard = Math.floor(Math.random() * deckHand.length);
         drawCard(deckHand, 0, whichCard);
         var cardName = playersArray[0][playersArray[0].length-1].split(" ");
@@ -540,7 +540,7 @@ function ask(num)
         if (card === clickedCard)
         {
           message2.innerHTML="Go fish - I drew the card that I asked for. I get to go again";
-          console.log("got what I wanted. Go again.");
+          // console.log("got what I wanted. Go again.");
           message3.innerHTML="";
           message4.innerHTML="";
           checkBook();
@@ -553,7 +553,7 @@ function ask(num)
           clearCards();
           checkWin();
           // message.innerHTML=+num+"'s turn";
-          console.log("Computer's turn.");
+          // console.log("Computer's turn.");
           compTurn(playersArray[num], num);
           checkBook();
           clearCards();
@@ -567,7 +567,7 @@ function ask(num)
           clearCards();
           checkWin();
           // message.innerHTML=+num+"'s turn";
-          console.log("Computer's turn.");
+          // console.log("Computer's turn.");
           compTurn(playersArray[num], num);
           checkBook();
           clearCards();
@@ -586,11 +586,11 @@ function compTurn(comp, num)
     var who = Math.floor(Math.random() * playersArray.length);
   } while (playersArray[who] === comp && playersArray[who]);
   var whichCard = Math.floor(Math.random() * comp.length);
-  console.log(playersArray[who] === comp);
-  console.log(who);
-  console.log("comp: "+comp);
-  console.log(playersArray[who]);
-  console.log(comp[whichCard]);
+  // console.log(playersArray[who] === comp);
+  // console.log(who);
+  // console.log("comp: "+comp);
+  // console.log(playersArray[who]);
+  // console.log(comp[whichCard]);
   var cardName = comp[whichCard].split(" ");
   whichCard = cardName[0];
   if (who === 0)
@@ -601,17 +601,17 @@ function compTurn(comp, num)
   {
     message3.innerHTML="Player "+num+" asked Player "+who+" if he had a(n) "+whichCard;
   }
-  console.log("Comp"+num+" asked Comp"+who+" if he had a "+whichCard);
+  // console.log("Comp"+num+" asked Comp"+who+" if he had a "+whichCard);
   for (var i = 0; i < playersArray[who].length; i++)
   {
     if (playersArray[who][i].indexOf(whichCard) !== -1)
     {
       countYes++;
-      console.log("found it!");
-      // console.log(comp);
-      // console.log(playersArray[who]);
-      // console.log(comp);
-      // console.log(playersArray[who]);
+      // console.log("found it!");
+      // // console.log(comp);
+      // // console.log(playersArray[who]);
+      // // console.log(comp);
+      // // console.log(playersArray[who]);
       cardMatches.push(i);
     }
     else
@@ -640,7 +640,7 @@ function compTurn(comp, num)
     {
       message4.innerHTML="Player "+who+" gave Player "+num+" "+countYes+" card(s)";
     }
-    console.log("comp"+who+" gave comp"+num+" "+countYes+" "+whichCard+"s");
+    // console.log("comp"+who+" gave comp"+num+" "+countYes+" "+whichCard+"s");
   }
   else if (countNo === playersArray[who].length)
   {
@@ -654,23 +654,23 @@ function compTurn(comp, num)
     }
     if (deckHand.length > 0)
     {
-      console.log("Go Fish");
+      // console.log("Go Fish");
       var whichCardDraw = Math.floor(Math.random() * deckHand.length);
       drawCard(deckHand, num, whichCardDraw);
       var cardName = playersArray[num][playersArray[num].length-1].split(" ");
       var card = cardName[0];
       if (card === whichCard)
       {
-        console.log("got what I wanted. Go again.");
+        // console.log("got what I wanted. Go again.");
       }
       else
       {
-        console.log("Player's turn.");
+        // console.log("Player's turn.");
       }
     }
   }
-  console.log("comp"+num+": "+comp.length);
-  console.log("comp"+who+": "+playersArray[who].length);
+  // console.log("comp"+num+": "+comp.length);
+  // console.log("comp"+who+": "+playersArray[who].length);
   // checkBook();
   // clearCards();
   // checkWin();
@@ -706,8 +706,8 @@ function checkBook()
   for (var i = 0; i < playersArray.length; i++)
   {
     playersArray[i].sort();
-    // console.log(playersArray[i]);
-    console.log(playersArray[i].length);
+    // // console.log(playersArray[i]);
+    // console.log(playersArray[i].length);
     for (var j = 0; j < playersArray[i].length; j++)
     {
       var typeArray = playersArray[i][j].split(" ");
@@ -719,28 +719,28 @@ function checkBook()
       {
         if (checkArray[k] === checkArray[l])
         {
-          // console.log(checkArray[k]);
-          // console.log(k);
-          // console.log(checkArray[l]);
-          // console.log(l);
+          // // console.log(checkArray[k]);
+          // // console.log(k);
+          // // console.log(checkArray[l]);
+          // // console.log(l);
           count ++;
           cardMatches.push(l);
         }
       }
       if (cardMatches.length === 4)
       {
-        console.log("found 4");
+        // console.log("found 4");
         scoresArray[i].innerHTML++;
-        // console.log("player: "+playersArray[i]);
-        // console.log("cardMatches: "+cardMatches);
-        // console.log("checkArray: "+checkArray);
+        // // console.log("player: "+playersArray[i]);
+        // // console.log("cardMatches: "+cardMatches);
+        // // console.log("checkArray: "+checkArray);
         for (var m = cardMatches.length-1; m >= 0; m--)
         {
           playersArray[i].splice(cardMatches[m], 1);
           checkArray.splice(cardMatches[m], 1);
         }
-        // console.log("player: "+playersArray[i]);
-        // console.log("checkArray: "+checkArray);
+        // // console.log("player: "+playersArray[i]);
+        // // console.log("checkArray: "+checkArray);
       }
       cardMatches = [];
     }
@@ -774,15 +774,15 @@ function checkWin()
   }
   // if (true)
   var player = document.getElementById("player");
-  console.log(count);
-  console.log(playersArray.length);
-  console.log(count === playersArray.length);
-  console.log(!player);
+  // console.log(count);
+  // console.log(playersArray.length);
+  // console.log(count === playersArray.length);
+  // console.log(!player);
   if (count === playersArray.length || !player)
   {
     for (var i = 0; i < scoresArray.length; i++)
     {
-      console.log(scoresArray[i].innerHTML);
+      // console.log(scoresArray[i].innerHTML);
       if (i === 0)
       {
         winners = scoresArray[i].innerHTML;
@@ -794,9 +794,9 @@ function checkWin()
     }
     for (var i = 0; i < scoresArray.length; i++)
     {
-      console.log(scoresArray[i].innerHTML);
-      console.log(winners);
-      console.log(scoresArray[i].innerHTML == winners);
+      // console.log(scoresArray[i].innerHTML);
+      // console.log(winners);
+      // console.log(scoresArray[i].innerHTML == winners);
       if (scoresArray[i].innerHTML == winners)
       {
         if (i === 0)
@@ -809,7 +809,7 @@ function checkWin()
         }
       }
     }
-    console.log(winnersArray);
+    // console.log(winnersArray);
     if (winnersArray.length)
     {
       board.parentNode.removeChild(board);
@@ -820,15 +820,15 @@ function checkWin()
         if (winnersArray[i] === "You")
         {
           winningMessage.innerHTML=winnersArray[i]+" win!";
-          console.log(winnersArray[i]+" win!");
+          // console.log(winnersArray[i]+" win!");
         }
         else
         {
           winningMessage.innerHTML=winnersArray[i]+" wins!";
-          console.log(winnersArray[i]+" wins!");
+          // console.log(winnersArray[i]+" wins!");
         }
         body.appendChild(winningMessage);
-        console.log(winners);
+        // console.log(winners);
       }
       var playAgain = document.createElement("div");
       playAgain.setAttribute("id", "playAgain");
